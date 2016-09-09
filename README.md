@@ -13,6 +13,9 @@ The following **required** functionality is complete:
 * [x] User can enter a bill amount, choose a tip percentage, and see the tip and total values.
 * [x] Settings page to change the default tip percentage.
 
+The following **additional** features are implemented:
+
+* [x] Added a 32x32 icon for the Settings button.
 
 ## Video Walkthrough
 
