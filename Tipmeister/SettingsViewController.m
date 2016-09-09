@@ -20,10 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.defaults = [NSUserDefaults standardUserDefaults];
-   
     NSInteger tipIndex = [self.defaults integerForKey:@"default_tip_index"];
-    
-    NSLog(@"default tip::: %ld", tipIndex);
     [self.defaultTipControl setSelectedSegmentIndex:tipIndex];
 }
 

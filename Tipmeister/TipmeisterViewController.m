@@ -23,20 +23,12 @@
     [super viewDidLoad];
     self.title = @"Tipmeister";
     self.tipLabel.text = @"$0.00";
-    
-    
     self.defaults = [NSUserDefaults standardUserDefaults];
-    NSLog(@"tipview did load");
-    
     [self updateValues];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSLog(@"view will appear");
     NSInteger tipIndex = [self.defaults integerForKey:@"default_tip_index"];
-    NSLog(@"default tip: %ld", tipIndex);
-
     [self.tipControl setSelectedSegmentIndex:tipIndex];
     [self updateValues];
 }
@@ -57,7 +49,7 @@
     float billAmount = [self.billTextField.text floatValue];
     NSArray *tipValues = @[@(0.15), @(0.2), @(0.25)];
     float tipAmount = [tipValues[self.tipControl.selectedSegmentIndex] floatValue] * billAmount;
-    
+
     float totalAmount = billAmount + tipAmount;
     
     self.tipLabel.text = [NSString stringWithFormat:@"$%.2f", tipAmount];
