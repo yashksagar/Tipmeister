@@ -9,6 +9,7 @@
 #import "TipmeisterViewController.h"
 
 @interface TipmeisterViewController ()
+@property (strong, nonatomic) IBOutlet UIView *tipViewOutlet;
 @property (weak, nonatomic) IBOutlet UITextField *billTextField;
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
@@ -31,6 +32,28 @@
     NSInteger tipIndex = [self.defaults integerForKey:@"default_tip_index"];
     [self.tipControl setSelectedSegmentIndex:tipIndex];
     [self updateValues];
+
+    // animations galore!
+    self.tipViewOutlet.alpha = 0;
+
+    // only animate for placeholder
+    if ([self.billTextField.text integerValue] == 0) {
+        self.billTextField.alpha = 0;
+    }
+
+
+    [UIView animateWithDuration:0.42 animations:^{
+        // This causes the tip view to fade in
+        self.tipViewOutlet.alpha = 1;
+    } completion:^(BOOL finished) {
+        // only animate for placeholder
+        if ([self.billTextField.text integerValue] == 0) {
+            [UIView animateWithDuration:0.3 animations:^{
+                // This causes the bill text to fade in
+                self.billTextField.alpha = 1;
+            } completion:^(BOOL finished) {}];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,7 +74,7 @@
     float tipAmount = [tipValues[self.tipControl.selectedSegmentIndex] floatValue] * billAmount;
 
     float totalAmount = billAmount + tipAmount;
-    
+
     self.tipLabel.text = [NSString stringWithFormat:@"$%.2f", tipAmount];
     self.totalLabel.text = [NSString stringWithFormat:@"$%.2f", totalAmount];
 }

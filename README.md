@@ -21,7 +21,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-![tipmeister-1](https://cloud.githubusercontent.com/assets/2559439/18379845/69b06d14-7629-11e6-91a9-cad92ff05fbb.gif)
+![tipmeister-3](https://cloud.githubusercontent.com/assets/2559439/18406961/fa6136a0-76b9-11e6-8899-c5125f2d409e.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

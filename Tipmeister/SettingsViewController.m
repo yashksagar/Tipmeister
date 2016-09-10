@@ -11,7 +11,9 @@
 @interface SettingsViewController ()
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *defaultTipControl;
+@property (weak, nonatomic) IBOutlet UILabel *defaultTipLabel;
 @property NSUserDefaults *defaults;
+@property (strong, nonatomic) IBOutlet UIView *viewOutlet;
 
 @end
 
@@ -22,6 +24,48 @@
     self.defaults = [NSUserDefaults standardUserDefaults];
     NSInteger tipIndex = [self.defaults integerForKey:@"default_tip_index"];
     [self.defaultTipControl setSelectedSegmentIndex:tipIndex];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    // animations galore
+    self.viewOutlet.alpha = 0;
+    self.defaultTipControl.alpha = 0;
+    self.defaultTipLabel.alpha = 0;
+
+
+    [UIView animateWithDuration:0.42 animations:^{
+        // This causes the settings view to fade in
+        self.viewOutlet.alpha = 1;
+        self.defaultTipControl.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0, 0);
+        self.defaultTipLabel.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0, 0);
+    } completion:^(BOOL finished) {
+        // fade the controls in.
+        [UIView animateWithDuration:0.3 animations:^{
+            self.defaultTipControl.alpha = 1;
+            self.defaultTipLabel.alpha = 1;
+            self.defaultTipControl.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.2, 1.2);
+            self.defaultTipLabel.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.2, 1.2);
+        } completion:^(BOOL finished) {
+            self.defaultTipControl.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
+            self.defaultTipLabel.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
+        }];
+    }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    // Optionally initialize the property to a desired starting value
+    self.viewOutlet.alpha = 1;
+    self.defaultTipControl.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.2, 1.2);
+    self.defaultTipLabel.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.2, 1.2);
+
+    [UIView animateWithDuration:0.42 animations:^{
+        // This causes the settings view to fade in
+        self.viewOutlet.alpha = 0;
+        self.defaultTipControl.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0, 0);
+        self.defaultTipLabel.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0, 0);
+    } completion:^(BOOL finished) {
+        // Do something here when the animation finishes.
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
