@@ -13,6 +13,9 @@ The following **required** functionality is complete:
 * [x] User can enter a bill amount, choose a tip percentage, and see the tip and total values.
 * [x] Settings page to change the default tip percentage.
 
+The following **optional** functionality is complete:
+* [x] Alpha animations for views and bill placeholder, and scale transform animation for tip percent control in settings (note the bounce!)
+
 The following **additional** features are implemented:
 
 * [x] Added a 32x32 icon for the Settings button.
